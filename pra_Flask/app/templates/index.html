@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{name}}</title>
+    </head>
+    <a href="/logout">ログアウトする</a>
+    <body>
+        {% if name == "nekoneko" %}
+        <h1>スーパーアルティメットまんぷく{{name}}</h1>
+        {% elif name %}
+        <h1>まんぷく{{name}}</h1>
+        {% else %}
+        <h1>ノーマルキャット</h1>
+        {% endif %}
+
+        <img src="/static/images/manpuku_cat.png" alt="まんぷくキャット" width="30%" height="30%">
+        <form action="/add" method="POST">
+            <input type="text" name="title" placeholder="title">
+            <input type="text" name="body" placeholder="body">
+            <input type="submit" value="Add">
+        </form>
+
+        <form action="/update" method="POST" id="update">
+            <input type="text" name="title" placeholder="title">
+            <input type="text" name="body" placeholder="body">
+            <input type="submit" value="Update">
+        </form>
+        <form action="/delete" method="post" id="delete">
+            <input type="submit" value="Delete Selected ALL Tsubuyaki">
+        </form>
+            {% for gohan in all_gohan %}
+            <div>
+                <input type="radio" name="update" value={{gohan.id}}>
+                <input type="checkbox" name="delete" form="delete" value={{gohan.id}}> 
+                {{gohan.title}}:{{gohan.body}} ({{gohan.date}})
+            </div>
+            {% endfor %}
+        </form>
+    </body>
+    
+</html>
