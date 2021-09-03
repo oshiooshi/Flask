@@ -6,12 +6,21 @@
     <body>
         <h1>コードを作ろう！！！</h1>
 
-        <form action="/index" method="POST"　style="margin:10%">
-            <textarea name="code" rows="10" cols="50">ねむねむ</textarea>
-            <textarea name="code" rows="10" cols="50">ねこねこ</textarea>
+        <form action="/index" method="POST">
+            {% if code %}
+            <textarea name="code" rows="10" cols="50">{{code}}</textarea>
+            {% else %}
+            <textarea name="code" placeholder="コードを入力してください" rows="10" cols="50"></textarea>
+            {% endif %}
+
+            {% if transcode %}
+            <textarea name="transcode" rows="10" cols="50">{{transcode}}</textarea>
+            {% else %}
+            <textarea name="transcode" placeholder="翻訳ボタンを押してください" rows="10" cols="50"></textarea>
+           {% endif %}
             <br>
-            <input type="submit" value="翻訳">
-            <input type="submit" value="いいね👍">
+            <input type="submit" name="translate" value="翻訳">
+            <input type="submit" name="good" value="いいね👍">
         </form>
 
     </body>
